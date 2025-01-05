@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'counter_state.dart';
 
-class CounterBloc extends Cubit<CounterState> {
-  CounterBloc() : super(CounterInitial());
+class CounterCubit extends Cubit<CounterState> {
+  CounterCubit() : super(CounterInitial());
 
   void increment() {
     emit(CounterValue(state.counter + 1));
