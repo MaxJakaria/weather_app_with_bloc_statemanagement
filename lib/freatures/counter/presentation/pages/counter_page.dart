@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_with_bloc_statemanagement/core/theme/app_palate.dart';
-import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/cubit/counter_cubit.dart';
+import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/bloc/counter_bloc.dart';
+// import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/cubit/counter_cubit.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/pages/increment_decrement_page.dart';
 
 class CounterPage extends StatelessWidget {
@@ -18,10 +19,12 @@ class CounterPage extends StatelessWidget {
         title: Text(title),
       ),
       backgroundColor: AppPalate.backGroundColor,
-      body: BlocBuilder<CounterCubit, CounterState>(
+      // body: BlocBuilder<CounterCubit, CounterState>(
+      body: BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
-          final counterText =
-              (state is CounterValue) ? '${state.counter}' : '0';
+          // final counterText =
+          //     (state is CounterValue) ? '${state.counter}' : '0';
+          final counterText = (state is CounterValue) ? '${state.count}' : '0';
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
