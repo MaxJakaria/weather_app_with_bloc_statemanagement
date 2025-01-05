@@ -29,7 +29,7 @@ class ButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(100, 25),
+          fixedSize: const Size(150, 50),
           backgroundColor: AppPalate.transparentColor,
           shadowColor: AppPalate.transparentColor,
         ),
