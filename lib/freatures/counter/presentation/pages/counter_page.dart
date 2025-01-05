@@ -14,16 +14,10 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  final counterBloc = CounterBloc();
-
-  @override
-  void dispose() {
-    counterBloc.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final counterBloc = BlocProvider.of<CounterBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppPalate.appBarColor,
