@@ -11,6 +11,12 @@ class CounterBloc extends Cubit<CounterState> {
   }
 
   void decrement() {
-    emit(CounterValue(state.counter - 1));
+    if (state.counter > 0) {
+      emit(CounterValue(state.counter - 1));
+    }
+  }
+
+  void reset() {
+    emit(CounterInitial());
   }
 }

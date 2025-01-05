@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/cubit/counter_bloc.dart';
+import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/widgets/button_widget.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({super.key, required this.title});
@@ -56,6 +57,15 @@ class _CounterPageState extends State<CounterPage> {
             },
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
+          ),
+
+          ButtonWidget(
+            buttonName: 'Reset',
+            buttonColor1: Colors.blue,
+            buttonColor2: Colors.green,
+            onPressed: () {
+              counterBloc.reset();
+            },
           ),
 
           FloatingActionButton(
