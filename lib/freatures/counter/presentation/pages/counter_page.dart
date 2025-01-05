@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app_with_bloc_statemanagement/core/theme/app_palate.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/cubit/counter_bloc.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/widgets/button_widget.dart';
 
@@ -25,10 +26,11 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: AppPalate.appBarColor,
 
         title: Text(widget.title),
       ),
+      backgroundColor: AppPalate.backGroundColor,
       body: BlocBuilder<CounterBloc, CounterState>(
         bloc: counterBloc,
         builder: (context, state) {
@@ -61,8 +63,8 @@ class _CounterPageState extends State<CounterPage> {
 
           ButtonWidget(
             buttonName: 'Reset',
-            buttonColor1: Colors.blue,
-            buttonColor2: Colors.green,
+            buttonColor1: AppPalate.gradient1,
+            buttonColor2: AppPalate.gradient2,
             onPressed: () {
               counterBloc.reset();
             },

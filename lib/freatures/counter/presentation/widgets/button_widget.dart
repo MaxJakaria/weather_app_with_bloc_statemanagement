@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_with_bloc_statemanagement/core/theme/app_palate.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String buttonName;
@@ -29,12 +30,16 @@ class ButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(100, 25),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
+          backgroundColor: AppPalate.transparentColor,
+          shadowColor: AppPalate.transparentColor,
         ),
         child: Text(
           buttonName,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: AppPalate.buttonTextColor,
+          ),
         ),
       ),
     );
