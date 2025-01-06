@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app_with_bloc_statemanagement/core/theme/app_palate.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/todo/domain/entities/todo.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/todo/presentation/cubit/todo_cubit.dart';
 
@@ -9,7 +10,11 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Todo List')),
+      appBar: AppBar(
+        title: const Text('Todo List'),
+        backgroundColor: AppPalate.appBarColor,
+      ),
+      backgroundColor: AppPalate.backGroundColor,
       body: BlocBuilder<TodoCubit, List<Todo>>(
         builder: (context, todos) {
           return ListView.builder(

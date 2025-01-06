@@ -13,7 +13,13 @@ class TodoCubit extends Cubit<List<Todo>> {
       description: description,
       createdAt: DateTime.now(),
     );
-    final updateTodos = List<Todo>.from(state)..add(todo);
+    /*final updateTodos = List<Todo>.from(state)..add(todo);
     emit(updateTodos);
+    or
+    state.add(todo);
+    emit([...state]);
+    or
+    */
+    emit([...state, todo]);
   }
 }

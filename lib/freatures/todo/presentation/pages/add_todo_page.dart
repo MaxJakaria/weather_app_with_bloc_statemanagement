@@ -4,6 +4,7 @@ import 'package:weather_app_with_bloc_statemanagement/core/theme/app_palate.dart
 import 'package:weather_app_with_bloc_statemanagement/freatures/counter/presentation/widgets/button_widget.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/todo/presentation/cubit/todo_cubit.dart';
 import 'package:weather_app_with_bloc_statemanagement/freatures/todo/presentation/widgets/text_field.dart';
+import 'package:weather_app_with_bloc_statemanagement/freatures/todo/presentation/widgets/todo_text_form_field.dart';
 
 class AddTodoPage extends StatefulWidget {
   const AddTodoPage({super.key});
@@ -15,36 +16,54 @@ class AddTodoPage extends StatefulWidget {
 class _AddTodoPageState extends State<AddTodoPage> {
   final todoTitleController = TextEditingController();
   final todoDiscriptionController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  void addTodo() {
+    if (formKey.currentState!.validate()) {
+      context.read<TodoCubit>().addTodo(
+        todoTitleController.text.trim(),
+        todoDiscriptionController.text.trim(),
+      );
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Todo')),
+      appBar: AppBar(
+        title: const Text('Add Todo'),
+        backgroundColor: AppPalate.appBarColor,
+      ),
+      backgroundColor: AppPalate.backGroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TodoTextField(hintText: 'Todo', controller: todoTitleController),
-            TodoTextField(
-              hintText: 'Description',
-              controller: todoDiscriptionController,
-            ),
-            const SizedBox(height: 20),
-            ButtonWidget(
-              buttonName: 'Add Todo',
-              buttonColor1: AppPalate.gradient1,
-              buttonColor2: AppPalate.gradient2,
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TodoTextField(hintText: 'Title', controller: todoTitleController),
 
-              onPressed: () {
-                context.read<TodoCubit>().addTodo(
-                  todoTitleController.text.trim(),
-                  todoDiscriptionController.text.trim(),
-                );
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+              SizedBox(height: 20),
+              TodoTextFormField(
+                hintText: 'Description',
+                controller: todoDiscriptionController,
+              ),
+
+              const SizedBox(height: 20),
+
+              ButtonWidget(
+                buttonName: 'Add Todo',
+                buttonColor1: AppPalate.gradient1,
+                buttonColor2: AppPalate.gradient2,
+
+                onPressed: () {
+                  addTodo();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
